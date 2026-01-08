@@ -9,7 +9,7 @@
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
 
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/dragolandia"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/dragonlandia"/>
             <property name="jakarta.persistence.jdbc.user" value="dam2user"/>
             <property name="jakarta.persistence.jdbc.password" value="1234.."/>
 
