@@ -1,5 +1,5 @@
 package project.models;
 
 public enum RolesMago {
-    PROTE
+    PROTECTOR, COMBATIENTE, COLABORADOR
 }

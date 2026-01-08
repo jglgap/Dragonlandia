@@ -8,6 +8,7 @@ import project.models.Dragon;
 import project.models.Hechizo;
 import project.models.Mago;
 import project.models.Monstruo;
+import project.models.RolesMago;
 import project.models.TipoMonstruo;
 
 public class BattleView {
@@ -26,7 +27,23 @@ public class BattleView {
             int vidaMago = Integer.parseInt(sc.nextLine());
             System.out.println("Nivel de magia");
             int nivelMagiaMago = Integer.parseInt(sc.nextLine());
-            return new Mago(nombreMago, vidaMago, nivelMagiaMago, conjuros);
+            System.out.println("Elige el rol");
+            System.out.println("1-Combatiente   2-Protector    3-Colaborador");
+            RolesMago rol = null;
+            int opcion = Integer.parseInt(sc.nextLine());
+            switch (opcion) {
+                case 1:
+                    rol = RolesMago.COMBATIENTE;
+                    break;
+                case 2:
+                    rol = RolesMago.PROTECTOR;
+                    break;
+                case 3:
+                    rol = RolesMago.COLABORADOR;
+                default:
+                    break;
+            }
+            return new Mago(nombreMago, vidaMago, nivelMagiaMago,rol, conjuros);
         } catch (Exception e) {
             return null;
         }

@@ -48,6 +48,8 @@ public class Mago {
     private List<Hechizo> conjuros;
 
 
+    private RolesMago rol;
+
     public Mago() {}
 
     /**
@@ -57,10 +59,11 @@ public class Mago {
      * @param vida Vida inicial del mago (>=0).
      * @param nivelMagia Nivel de magia inicial del mago (>=0).
      */
-    public Mago(String nombre, @PositiveOrZero int vida, @PositiveOrZero int nivelMagia,List<Hechizo> conjuros) {
+    public Mago(String nombre, @PositiveOrZero int vida, @PositiveOrZero int nivelMagia,RolesMago rol,List<Hechizo> conjuros) {
         this.nombre = nombre;
         this.vida = vida;
         this.nivelMagia = nivelMagia;
+        this.rol=rol;
         this.conjuros = conjuros;
     }
 

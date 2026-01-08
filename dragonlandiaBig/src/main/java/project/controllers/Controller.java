@@ -14,6 +14,7 @@ import org.hibernate.cfg.Configuration;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
 import project.connections.Connection;
 import project.connections.Manager;
 import project.models.Bosque;
@@ -78,8 +79,7 @@ public class Controller {
  
         Mago magoCreado = null;
         
-        try (EntityManagerFactory emf = mang.getEMF()) {
-            EntityManager em = emf.createEntityManager();
+        try (EntityManager em = mang.getEMF().createEntityManager()) {
             em.getTransaction().begin();
             Hechizo bolaFuego = em.find(Hechizo.class, 1);
             Hechizo rayo = em.find(Hechizo.class, 2);
@@ -117,9 +117,8 @@ public class Controller {
         public void crearMostruo() {
        
         Monstruo monstruoCreado = vista.getValoresMonstruo();
-        EntityManager em = null;
-        try (EntityManagerFactory emf = mang.getEMF()) { 
-            em = emf.createEntityManager();
+        
+        try (EntityManager em = mang.getEMF().createEntityManager()) { 
             em.getTransaction().begin();
             em.persist(monstruoCreado);
             em.getTransaction().commit();
@@ -186,17 +185,40 @@ public class Controller {
      * como nuevo jefe al monstruo con ID 2. Luego persiste el cambio en la base
      * de datos.
      */
-    public void cambiarMonstruo() {
-        Session session = null;
+    // public void cambiarMonstruo() {
+    //     Session session = null;
+    //     Bosque bosque = null;
+    //     Monstruo monstruo = null;
+    //     Transaction tx = null;
+    //     try (SessionFactory factory = conn.getFactory()) {
+
+    //         session = factory.getCurrentSession();
+    //         tx = session.beginTransaction();
+    //         bosque = session.find(Bosque.class, 1);
+    //         monstruo = session.find(Monstruo.class, 2);
+    //         bosque.setMonstruoJefe(monstruo);
+    //         System.out.println("El nuevo jefe del bosque es " + monstruo.getNombre());
+
+    //         tx.commit();
+    //     } catch (Exception e) {
+    //         System.out.println("Problemas ataque el monstruo");
+    //         tx.rollback();
+    //     }
+
+    // }
+
+        public void cambiarMonstruo() {
+        
         Bosque bosque = null;
         Monstruo monstruo = null;
-        Transaction tx = null;
-        try (SessionFactory factory = conn.getFactory()) {
+        EntityTransaction tx = null;
+        try (EntityManager em = mang.getEMF().createEntityManager()) {
 
-            session = factory.getCurrentSession();
-            tx = session.beginTransaction();
-            bosque = session.find(Bosque.class, 1);
-            monstruo = session.find(Monstruo.class, 2);
+            
+            tx = em.getTransaction();
+            tx.begin();
+            bosque = em.find(Bosque.class, 1);
+            monstruo = em.find(Monstruo.class, 2);
             bosque.setMonstruoJefe(monstruo);
             System.out.println("El nuevo jefe del bosque es " + monstruo.getNombre());
 
@@ -252,19 +274,42 @@ public class Controller {
      * Crea un nuevo bosque. Obtiene tres monstruos de la base de datos y utiliza la vista
      * para construir un objeto Bosque que luego se persiste.
      */
+    // public void crearBosque() {
+    //     Session session = null;
+    //     Transaction tx = null;
+    //     try (SessionFactory factory = conn.getFactory()) {
+    //         session = factory.getCurrentSession();
+    //         tx = session.beginTransaction();
+    //         Monstruo jefe = session.find(Monstruo.class, 1);
+    //         Monstruo m1 = session.find(Monstruo.class, 2);
+    //         Monstruo m2 = session.find(Monstruo.class, 3);
+    //         Dragon dragon = session.find(Dragon.class, 1);
+    //         List<Monstruo> monstruos = Arrays.asList(jefe,m1,m2);
+    //         Bosque bosque = vista.getValoresBosque(jefe, monstruos,dragon);
+    //         session.persist(bosque);
+    //         tx.commit();
+
+    //     } catch (Exception e) {
+    //         System.out.println("Problemas crendo el bosque");
+    //         tx.rollback();
+    //     }
+
+    // }
+
     public void crearBosque() {
-        Session session = null;
-        Transaction tx = null;
-        try (SessionFactory factory = conn.getFactory()) {
-            session = factory.getCurrentSession();
-            tx = session.beginTransaction();
-            Monstruo jefe = session.find(Monstruo.class, 1);
-            Monstruo m1 = session.find(Monstruo.class, 2);
-            Monstruo m2 = session.find(Monstruo.class, 3);
-            Dragon dragon = session.find(Dragon.class, 1);
+        
+        EntityTransaction tx = null;
+        try (EntityManager em = mang.getEMF().createEntityManager()) {
+            
+            tx = em.getTransaction();
+            tx.begin();
+            Monstruo jefe = em.find(Monstruo.class, 1);
+            Monstruo m1 = em.find(Monstruo.class, 2);
+            Monstruo m2 = em.find(Monstruo.class, 3);
+            Dragon dragon = em.find(Dragon.class, 1);
             List<Monstruo> monstruos = Arrays.asList(jefe,m1,m2);
             Bosque bosque = vista.getValoresBosque(jefe, monstruos,dragon);
-            session.persist(bosque);
+            em.persist(bosque);
             tx.commit();
 
         } catch (Exception e) {
@@ -274,15 +319,34 @@ public class Controller {
 
     }
 
+    /**
+     * Crea un nuevo dragon.
+     */
+    // public void crearDragon(){
+    //     Session session = null;
+    //     Transaction tx = null;
+    //     try(SessionFactory factory = conn.getFactory()){
+    //         session = factory.getCurrentSession();
+    //         tx = session.beginTransaction();
+    //         Dragon dragon = vista.getValoresDragon();
+    //         session.persist(dragon);
+    //         tx.commit();
+    //     }catch(Exception e){
+    //         System.out.println("Problemas creando dragon");
+    //         tx.rollback();
+    //     }
 
-    public void crearDragon(){
-        Session session = null;
-        Transaction tx = null;
-        try(SessionFactory factory = conn.getFactory()){
-            session = factory.getCurrentSession();
-            tx = session.beginTransaction();
+    // }
+
+      public void crearDragon(){
+        
+        EntityTransaction tx = null;
+        try(EntityManager em = mang.getEMF().createEntityManager()){
+            
+            tx = em.getTransaction();
+            tx.begin();
             Dragon dragon = vista.getValoresDragon();
-            session.persist(dragon);
+            em.persist(dragon);
             tx.commit();
         }catch(Exception e){
             System.out.println("Problemas creando dragon");
