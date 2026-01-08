@@ -235,40 +235,40 @@ public class Controller {
      * 
      * @return un mensaje indicando quién murió primero ("monstruo murio" o "mago murio").
      */
-    public String hacerBatalla() {
-        Session session = null;
-        Monstruo monstruo = null;
-        Mago mago = null;
-        Transaction tx = null;
+    // public String hacerBatalla() {
+    //     Session session = null;
+    //     Monstruo monstruo = null;
+    //     Mago mago = null;
+    //     Transaction tx = null;
 
-        try (SessionFactory factory = conn.getFactory()) {
+    //     try (SessionFactory factory = conn.getFactory()) {
 
-            session = factory.getCurrentSession();
-            tx = session.beginTransaction();
-            mago = session.find(Mago.class, 1);
-            monstruo = session.find(Monstruo.class, 1);
-            while (monstruo.getVida() > 0 && mago.getVida() > 0) {
-                monstruo.atacar(mago);
-                session.merge(mago);
-                mago.ataque(monstruo);
-                session.merge(monstruo);
-            }
+    //         session = factory.getCurrentSession();
+    //         tx = session.beginTransaction();
+    //         mago = session.find(Mago.class, 1);
+    //         monstruo = session.find(Monstruo.class, 1);
+    //         while (monstruo.getVida() > 0 && mago.getVida() > 0) {
+    //             monstruo.atacar(mago);
+    //             session.merge(mago);
+    //             mago.ataque(monstruo);
+    //             session.merge(monstruo);
+    //         }
 
-            tx.commit();
-        } catch (Exception e) {
-            System.out.println("Problemas batalla" + e.getMessage());
-            tx.rollback();
-        }
+    //         tx.commit();
+    //     } catch (Exception e) {
+    //         System.out.println("Problemas batalla" + e.getMessage());
+    //         tx.rollback();
+    //     }
 
-        String frase = "";
-        if (monstruo.getVida() <= 0) {
-            frase = "monstruo murio";
-        } else if (mago.getVida() <= 0) {
-            frase = "mago murio";
-        }
+    //     String frase = "";
+    //     if (monstruo.getVida() <= 0) {
+    //         frase = "monstruo murio";
+    //     } else if (mago.getVida() <= 0) {
+    //         frase = "mago murio";
+    //     }
 
-        return frase;
-    }
+    //     return frase;
+    // }
 
     /**
      * Crea un nuevo bosque. Obtiene tres monstruos de la base de datos y utiliza la vista
@@ -374,8 +374,8 @@ public class Controller {
                 case 2:
                     crearMostruo();
                 case 3:
-                    String frase = hacerBatalla();
-                    vista.mostrarGanador(frase);
+                    //String frase = hacerBatalla();
+                    //vista.mostrarGanador(frase);
                     break;
 
                 case 4:
