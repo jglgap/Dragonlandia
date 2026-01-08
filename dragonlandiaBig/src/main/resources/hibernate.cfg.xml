@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+
+        <!-- Conexión JDBC a MySQL en Docker -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/dragonlandia</property>
+        <property name="hibernate.connection.username">dam2user</property>
+        <property name="hibernate.connection.password">1234..</property>
+
+        <!-- Dialecto de MySQL -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <!-- Configuraciones de Hibernate -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+
+        <!-- Registrar entidades -->
+        <mapping class="project.models.Mago"/>
+        <mapping class="project.models.Bosque"/>
+        <mapping class="project.models.Monstruo"/>
+        <mapping class="project.models.Dragon"/>
+        <mapping class="project.models.Hechizo"/>
+
+    </session-factory>
+</hibernate-configuration>
