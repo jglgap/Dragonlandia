@@ -119,4 +119,19 @@ public class BattleView {
         int cantidad = Integer.parseInt(sc.nextLine());
         return cantidad;
     }
+
+    public String nuevaDescripcion(){
+        System.out.println("Introuduce la nueva descripcion");
+        String des = sc.nextLine();
+        return des;
+    }
+
+
+    public Hechizo getValoresHechizo(){
+        System.out.println("Introduce el nombre");
+        String nombre = sc.nextLine();
+        System.out.println("Introduce la descripcion");
+        String des = sc.nextLine();
+        return new Hechizo(nombre,des);
+    }
 }
