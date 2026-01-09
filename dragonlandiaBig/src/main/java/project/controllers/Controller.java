@@ -47,6 +47,7 @@ public class Controller {
     public Controller(Manager mang , BattleView vista) {
         this.mang = mang;
         this.vista = vista;
+        crearHechizosBase();
         menu();
     }
         /**
@@ -354,11 +355,51 @@ public class Controller {
         }
 
     }
+
+
+
+
+    /**
+     * crea hechizos default a la hora de iniciar el programa
+     */
+    public void crearHechizosBase(){
+        EntityTransaction tx = null;
+        try (EntityManager em = mang.getEMF().createEntityManager()) {
+            tx = em.getTransaction();
+            tx.begin();
+            Long count = em.createQuery("SELECT COUNT(h) FROM Hechizo h", Long.class)
+                       .getSingleResult();
+            if (count != 0) {
+                System.out.println("Ya estan creados los hechizos iniciales");
+                tx.commit();
+            }else{
+                Hechizo bolaFuego = new Hechizo("Bola de fuego","Llamarada en forma de bola abrasadora");
+                Hechizo rayo = new Hechizo("Rayo", "Invocacion de un rayo de los dioses");
+                Hechizo bolaNieve = new Hechizo("Bola de nieve","Una bola de nieve que congela hasta la muerte al enemigo");
+                Hechizo atormentacion = new Hechizo("Atormentacion","Una nublacion en la mente del enemigo");
+                em.persist(bolaFuego);
+                em.persist(rayo);
+                em.persist(bolaNieve);
+                em.persist(atormentacion);
+                tx.commit();
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al crear los hechizos base");
+            tx.rollback();
+        }
+
+        
+     }
+
      /**
      * Muestra un menú interactivo en consola que permite al usuario elegir acciones
      * como crear magos, monstruos, iniciar batallas o modificar el bosque. Las acciones
      * se ejecutan en un bucle hasta que el usuario ingresa la opción para salir.
      */
+
+
+     
     public void menu() {
         Scanner sc = new Scanner(System.in);
         boolean it = true;

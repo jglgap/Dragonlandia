@@ -105,4 +105,18 @@ public class BattleView {
         return new Dragon(nombre,intensidad,resistencia);
     }
 
+
+
+    public int getId(){
+        System.out.println("Introduce el id");
+        int id = Integer.parseInt(sc.nextLine());
+        return id;
+    }
+
+
+    public int getNuevaFuerza(){
+        System.out.println("Introduce la nueva cantidad de poder");
+        int cantidad = Integer.parseInt(sc.nextLine());
+        return cantidad;
+    }
 }

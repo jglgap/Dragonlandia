@@ -190,4 +190,14 @@ public class Mago {
 
     }
 
+    @Override
+    public String toString() {
+        String poderes = null;
+        for (Hechizo hechizo : conjuros) {
+            poderes += hechizo + ", ";
+        }
+
+        return "nombre: " +  this.nombre + ", nivel de magia: "+ this.nivelMagia + ", vida: " + this.vida + ", conjuros: " + poderes + "rol: " + this.rol;
+    }
+
 }
