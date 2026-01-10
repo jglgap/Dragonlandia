@@ -66,13 +66,11 @@ public class MainController {
 
     }
 
-  
     private boolean equipoMagoVivo(Mago mago1, Mago mago2, Dragon dragon) {
         return (mago1 != null && mago1.getVida() > 0) ||
                 (mago2 != null && mago2.getVida() > 0) ||
                 (dragon != null && dragon.getResistencia() > 0);
     }
-
 
     private boolean equipoMonstruoVivo(Monstruo m1, Monstruo m2, Monstruo m3) {
         return (m1 != null && m1.getVida() > 0) ||
@@ -88,6 +86,11 @@ public class MainController {
         Monstruo m2 = null;
         Monstruo m3 = null;
         Dragon dragon = null;
+        Hechizo hechizo1 = null;
+        Hechizo hechizo2 = null;
+        Hechizo hechizo3 = null;
+        Hechizo hechizo4 = null;
+
         EntityTransaction tx = null;
         try (EntityManager em = mang.getEMF().createEntityManager()) {
             tx = em.getTransaction();
@@ -99,8 +102,27 @@ public class MainController {
             m2 = bosque.getListaMonstruos().get(1);
             m3 = bosque.getListaMonstruos().get(2);
             dragon = bosque.getDragon();
-            while () {
-
+            hechizo1 = em.find(Hechizo.class, 1);
+            hechizo2 = em.find(Hechizo.class, 2);
+            hechizo3 = em.find(Hechizo.class, 3);
+            hechizo4 = em.find(Hechizo.class, 4);
+            while (equipoMagoVivo(mago1, mago2, dragon) && equipoMonstruoVivo(m1, m2, m3)) {
+                mago1.ataque(m3);
+                em.merge(m3);
+                mago2.ataque(m1);
+                em.merge(m3);
+                dragon.exhalar(m2);
+                em.merge(m2);
+                m1.atacar(mago2);
+                em.merge(mago2);
+                m2.atacar(mago1);
+                em.merge(mago1);
+                m3.atacar(mago2);
+                em.merge(mago2);
+                mago1.lanzarHechizo(m1, hechizo1);
+                em.merge(m1);
+                mago2.lanzarHechizo(m3, hechizo2);
+                em.merge(m3);
             }
 
             tx.commit();
@@ -108,7 +130,13 @@ public class MainController {
             tx.rollback();
             System.out.println("error haciendo batalla" + e.getMessage());
         }
-
+        if (!equipoMagoVivo(mago1, mago2, dragon)) {
+            System.out.println("¡Los monstruos han ganado!");
+        } else if (!equipoMonstruoVivo(m1, m2, m3)) {
+            System.out.println("¡Los magos y el dragón han ganado!");
+        } else {
+            System.out.println("Empate inesperado..."); // casi imposible
+        }
     }
 
     public void menuMago() {
@@ -262,7 +290,7 @@ public class MainController {
                     menuHechizos();
                     break;
                 case 6:
-
+                    hacerBatalla();
                     break;
                 case 7:
                     it = false;

@@ -161,34 +161,35 @@ public class Mago {
       
     }
 
-    public void lanzarHechizo(Monstruo monstruo, Hechizo hechizo){
-        String nombre = hechizo.getNombre();
-        String bolaFuego = "Bola de fuego";  
-        String rayo = "Rayo";
-        String bolaNieve = "Bola de nieve";
-        String atormentacion = "Atormentacion";
-        for (Hechizo conjuro : conjuros) {
-            if (nombre.equals(conjuro.getNombre()) && nombre.equals(bolaFuego.toLowerCase())) {
-               monstruo.setVida((int) (monstruo.getVida() - (monstruo.getVida()*0.75)));
-               System.out.println("ALLAHUA AKBARRRRRRRRRRRRRRRRRRRRRRRRR");
-            }else if (nombre.equals(conjuro.getNombre()) && nombre.equals(rayo.toLowerCase())) {
-                monstruo.setVida((int) (monstruo.getVida() - (monstruo.getVida()*0.50)));
-                System.out.println("Cuchaooo");
-            }else if(nombre.equals(conjuro.getNombre() ) && nombre.equals(bolaNieve.toLowerCase())){
-                monstruo.setVida(monstruo.getVida() - monstruo.getVida());
-                System.out.println("Congeladooooo, gg ez");
-            }else if(nombre.equals(conjuro.getNombre() ) && nombre.equals(atormentacion.toLowerCase())){
-                monstruo.setVida((int) (monstruo.getVida() - (monstruo.getVida()*0.10)));
-                System.out.println("Buuhhhhhhhhh");
-            }
-            else{
-                this.setVida(this.getVida() - 1);
-                throw new NullPointerException();
-            }
-        
-        }
+public void lanzarHechizo(Monstruo monstruo, Hechizo hechizo) {
 
+    String nombre = hechizo.getNombre().toLowerCase();
+
+    switch (nombre) {
+        case "bola de fuego":
+            monstruo.setVida((int)(monstruo.getVida() * 0.25));
+            System.out.println(" Bola de fuego");
+            break;
+
+        case "rayo":
+            monstruo.setVida((int)(monstruo.getVida() * 0.50));
+            System.out.println("Rayo");
+            break;
+
+        case "bola de nieve":
+            monstruo.setVida(0);
+            System.out.println("Congelado");
+            break;
+
+        case "atormentacion":
+            monstruo.setVida((int)(monstruo.getVida() * 0.90));
+            System.out.println("Atormentación");
+            break;
+
+        default:
+            System.out.println("Hechizo desconocido");
     }
+}
 
     @Override
     public String toString() {
