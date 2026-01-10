@@ -54,7 +54,7 @@ public class MostruoController {
         }
     }
 
-    public void eliminarmago() {
+    public void eliminarMonstruo() {
         Monstruo monstruo = null;
         EntityTransaction tx = null;
         int idMonstruo = vista.getId();

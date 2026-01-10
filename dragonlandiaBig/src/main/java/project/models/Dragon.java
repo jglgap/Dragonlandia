@@ -167,6 +167,9 @@ public class Dragon {
         this.resistencia = resistencia;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Nombre: " + this.nombre + ", intensidad de fuego: " + this.intesidadFuego + ", resistencia: " + this.resistencia;
+    }
 
 } 

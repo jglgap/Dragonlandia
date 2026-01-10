@@ -165,4 +165,10 @@ public class Monstruo {
             mago.setVida(mago.getVida() - this.fuerza);
     }
 
+
+    @Override
+    public String toString() {
+        return "Nombre: " + this.nombre + ", fuerza: " + this.fuerza + ", tipo: " + this.tipo + ", vida: " + this.vida;
+    }
+
 }

@@ -48,4 +48,9 @@ public class Hechizo {
     }
 
     
+    @Override
+    public String toString() {
+        return "Nombre: " + this.nombre + ", descripcion: " + this.descripcion;
+    }
+
 }

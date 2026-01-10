@@ -44,7 +44,7 @@ public class Mago {
      */
 
 
-    @OneToMany(targetEntity = Hechizo.class)
+    @ManyToMany(targetEntity = Hechizo.class)
     private List<Hechizo> conjuros;
 
 
@@ -192,9 +192,9 @@ public class Mago {
 
     @Override
     public String toString() {
-        String poderes = null;
+        String poderes = "";
         for (Hechizo hechizo : conjuros) {
-            poderes += hechizo + ", ";
+            poderes += hechizo.getNombre() + ", ";
         }
 
         return "nombre: " +  this.nombre + ", nivel de magia: "+ this.nivelMagia + ", vida: " + this.vida + ", conjuros: " + poderes + "rol: " + this.rol;

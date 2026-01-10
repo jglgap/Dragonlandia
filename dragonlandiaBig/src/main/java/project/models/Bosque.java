@@ -170,4 +170,13 @@ public class Bosque {
         System.out.println("Tipo del monstruo jefe = " + getMonstruoJefe().getTipo());
         System.out.println("Fuerza del monstruo jefe = " + getMonstruoJefe().getFuerza());
     }
+
+        
+    
+
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return "Nombre: " + this.nombre + ", nivel de peligro: " + this.nivelPeligro + ", dragon: " + this.dragon.getNombre() + ", mosntruo jefe: " + this.monstruoJefe.getNombre();
+    }
 }
