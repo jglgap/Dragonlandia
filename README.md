@@ -8,10 +8,10 @@
 ## Analisis
 
 ### DIAGRAMA DE CLASES
-![diagrama de clases](diagramaClases.png)
+![diagrama de clases](images/diagramaClases.png)
 ## DISEÑO 
 ### ENTIDAD-RELACION
-![entidad relacion](entidadRelacion.png)
+![entidad relacion](images/entidadRelacion.png)
 
 ## MEJORAS FUTURAS
 
