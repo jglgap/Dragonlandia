@@ -17,7 +17,7 @@
 [Tablas base de datos](DragonlandiaHibernateSantosRicardo%20(1).pdf)
 
 ## MANUAL DE USARIO
-[Manual de usuario](ManualDeUsuario.md)
+[Manual de usuario](ManualDeInstrucciones.md)
 
 ## MEJORAS FUTURAS
 
