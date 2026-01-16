@@ -13,7 +13,13 @@
 ### ENTIDAD-RELACION
 ![entidad relacion](images/entidadRelacion.png)
 
+## LINK A PDF CON TABLAS
+![entidad relacion](DragonlandiaHibernateSantosRicardo%20(1).pdf)
+
+
 ## MEJORAS FUTURAS
 
     Me gustaria mejorar los metodos de lanzar hechizos, la logica de como funciona la batalla y
     aclarar el verdadero funcionamiento de la app
+
+
