@@ -17,6 +17,9 @@
 ## LINK A PDF CON TABLAS
 [Tablas base de datos](DragonlandiaHibernateSantosRicardo%20(1).pdf)
 
+## MANUAL DE USUARIO
+[Tablas base de datos](ManualDeInstrucciones.md)
+
 ## MEJORAS FUTURAS
 
     Me gustaria mejorar los metodos de lanzar hechizos, la logica de como funciona la batalla y
