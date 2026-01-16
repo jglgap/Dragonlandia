@@ -14,7 +14,7 @@
 ![entidad relacion](images/entidadRelacion.png)
 
 ## LINK A PDF CON TABLAS
-![entidad relacion](DragonlandiaHibernateSantosRicardo%20(1).pdf)
+[Tablas base de datos](DragonlandiaHibernateSantosRicardo%20(1).pdf)
 
 
 ## MEJORAS FUTURAS
