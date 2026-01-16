@@ -16,6 +16,8 @@
 ## LINK A PDF CON TABLAS
 [Tablas base de datos](DragonlandiaHibernateSantosRicardo%20(1).pdf)
 
+## MANUAL DE USARIO
+[Manual de usuario](ManualDeUsuario.md)
 
 ## MEJORAS FUTURAS
 
